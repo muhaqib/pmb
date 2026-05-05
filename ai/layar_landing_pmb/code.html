@@ -1,0 +1,372 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e2e1ed",
+                    "secondary-fixed": "#e1e3e4",
+                    "on-primary-container": "#d4dcff",
+                    "on-secondary-fixed-variant": "#454748",
+                    "surface-tint": "#1353d8",
+                    "on-secondary-fixed": "#191c1d",
+                    "on-primary-fixed-variant": "#003dab",
+                    "primary": "#003fb1",
+                    "tertiary-container": "#576276",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#434654",
+                    "inverse-surface": "#2e3039",
+                    "on-primary-fixed": "#00174d",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "surface-variant": "#e2e1ed",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf8ff",
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "surface-container": "#ededf8",
+                    "tertiary": "#3f4a5e",
+                    "primary-container": "#1a56db",
+                    "error": "#ba1a1a",
+                    "outline": "#737686",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#626566",
+                    "surface-container-low": "#f3f3fe",
+                    "on-surface": "#191b23",
+                    "on-tertiary-container": "#d3def6",
+                    "primary-fixed-dim": "#b5c4ff",
+                    "on-tertiary-fixed": "#111c2d",
+                    "background": "#faf8ff",
+                    "surface-container-high": "#e7e7f3",
+                    "on-background": "#191b23",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#d8e3fb",
+                    "primary-fixed": "#dbe1ff",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed-dim": "#bcc7de",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c3c5d7",
+                    "secondary-container": "#e1e3e4",
+                    "secondary": "#5c5f60",
+                    "inverse-primary": "#b5c4ff",
+                    "surface-dim": "#d9d9e4",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "1.5rem",
+                    "stack-sm": "0.5rem",
+                    "margin-desktop": "2.5rem",
+                    "margin-mobile": "1rem",
+                    "container-max": "1280px",
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "h3": ["Public Sans"],
+                    "h2": ["Public Sans"],
+                    "h1": ["Public Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white shadow-sm border-b border-slate-200 flex justify-between items-center px-4 md:px-margin-desktop h-16">
+<div class="flex items-center gap-3">
+<span class="text-xl font-bold text-blue-800 font-h2">STIT MAMBAUL HIKMAH</span>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-blue-700 font-semibold font-label-md" href="#">Beranda</a>
+<a class="text-slate-500 hover:text-blue-600 transition-colors font-label-md" href="#">Program Studi</a>
+<a class="text-slate-500 hover:text-blue-600 transition-colors font-label-md" href="#">FAQ</a>
+<a class="text-slate-500 hover:text-blue-600 transition-colors font-label-md" href="#"><br></a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-600 p-2 hover:bg-slate-50 rounded-full transition-all">notifications</button>
+<button class="bg-primary text-on-primary px-5 py-2 rounded-xl font-label-md shadow-md active:scale-95 transition-all">Login</button>
+</div>
+</header>
+<main class="pt-16 pb-24">
+<!-- Hero Section -->
+<section class="relative min-h-[707px] flex items-center overflow-hidden bg-surface-container-lowest">
+<div class="absolute inset-0 z-0 opacity-10">
+<div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary rounded-full blur-[120px] -mr-48 -mt-48"></div>
+<div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tertiary rounded-full blur-[100px] -ml-24 -mb-24"></div>
+</div>
+<div class="container mx-auto px-4 md:px-margin-desktop relative z-10 flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 text-center md:text-left">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary-container/10 text-primary font-label-sm mb-6 border border-primary-container/20">Penerimaan Mahasiswa Baru 2024/2025</span>
+<h1 class="font-h1 text-on-surface mb-6 leading-tight">Wujudkan Masa Depan Gemilang di Kampus Inovasi</h1>
+<p class="font-body-lg text-on-surface-variant mb-10 max-w-xl">Bergabunglah dengan komunitas akademik terbaik. Kami menyediakan lingkungan belajar modern dengan kurikulum berbasis industri untuk mencetak lulusan yang siap bersaing secara global.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-h3 text-base flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all">
+                            Daftar Sekarang
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="bg-white border-2 border-outline-variant text-on-surface px-8 py-4 rounded-xl font-h3 text-base flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all">
+                            Unduh Brosur
+                            <span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="mt-8 flex items-center gap-4 justify-center md:justify-start text-on-surface-variant">
+<div class="flex -space-x-3">
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="A professional headshot of a diverse young female university student smiling confidently in a modern campus library setting. The lighting is bright and natural, reflecting a clean academic atmosphere with high-end corporate styling and soft focus background of books and glass architecture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdh85Gpp1WCGDFSwwzgBfGYYqyQAa4-qgfDYdXujPWtLyatFsy1I6pQCF21Q_9u4ImwweSfWQBWAsfe81sC_gca40l1oK-mUcBfCEGjbs7TyN5vzWgTiJDYHw_zUbSCSLxrDQRHWmhTsl_01MlqJ18RxhG1o0ZbNhgs2X47m_fXZm8u8jn9CIQW3e14IxzroYQk0K8qefor8YHDvKie9nR0lCIrielSJGVZImVjDvFgNvBgmlZE8S1EBwDnzyVWdAAsQ9A6ltlmV4">
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="A professional headshot of a focused young male university student with a bright smile, positioned against a minimalist architectural background of white walls and large windows. The image uses a clean, high-key lighting style typical of prestigious institutional photography, emphasizing stability, trust, and future-ready academic excellence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJkGv1n4RDVKXBt80GoTOQr2Cs5bEXB3EfPFQ5q6smEk-aIz-QlyYPrnbbARAulaMJ8_oBjbPaTSTZ8Q0gakIIp7ZnAceYXryvLDMzSK3Q21DdEHtpt-_3dEB115sJ9YcrKOszeqDl9VH5U03ObCZeAJWSq-gWX9UYupUIZgx2pk3gO1-x7UF4_0B3J33lnUdrh77Ry0GWsS5p8Dz-d20_CRlo0FFgqObd7GOH6yOeB30BJU_MvOyv-pmvVBbKBNaQmtQF0Xndpmc">
+<img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="A professional headshot of a smiling young male student wearing a neat shirt, set in a bright, modern university campus courtyard. The visual style is crisp and modern with a professional color palette, showcasing the diversity and welcoming spirit of a top-tier educational institution under soft daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGlYQsVeXw8TvztUdJOfPgRqaytidzcKz8XjBaLe-SOPuwPMDffB59kwokm5XdfvJ1ThA4kPp61LX7JYoa-xJ2sdjZ8x6wV3a_DDq43H3of6LAswww-8rLi97V2Rdc_SNMaFdxCfYayt11egZrsciJpswrkFwE0EDpTzOj8LDTno2HeHo_O2rCyw2jjfwxwi5HhOf0JV-NCEFAQTVW2Uv18gdE5vOZY_YFoQQ2LEG2cBX2GrqglhpZgNtT2LAuLAqdSYnsvQAxMBU">
+</div>
+<p class="text-label-sm"><span class="font-bold text-primary">1,200+</span> Calon Mahasiswa telah bergabung</p>
+</div>
+</div>
+<div class="flex-1 relative w-full max-w-lg md:max-w-none">
+<div class="relative rounded-3xl overflow-hidden shadow-2xl border-8 border-white aspect-[4/5] md:aspect-square">
+<img class="w-full h-full object-cover" data-alt="A vibrant and professional scene of diverse university students walking and talking in a modern campus hallway with large glass windows and bright natural light. The atmosphere is energetic yet organized, featuring a clean blue and white color palette that reflects authority and academic rigor, with a high-end corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_D74kT1fCcwTPrFJtZxi65xA-sZ1d2LnQf-K4GUsUPF9rXadomEPbpBNMJb2jhbrtiG4IPVt5HidqLjVOktYJB32kvHbbt7LHYGaS4Jlk22aNtXmaQrdd57qA4U7h8_l2_6iQDNw6TgJ6aH9GAC9j1Ra06264hoiluX1nrU6UnztkjdQvyowdSplJEbb1Xcl8sXlAuacO26QbPWQijpR1blG3XrUNcns4Bzb65M0JZL3D1lFHKTHe9rm6vNK7IPFh9uKdztSeHug">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-white/50 shadow-xl">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">verified</span>
+<div>
+<p class="font-label-md text-on-surface">Terakreditasi Unggul</p>
+<p class="text-label-sm text-on-surface-variant">BAN-PT Sertifikasi 2024</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -top-6 -right-6 w-24 h-24 bg-tertiary-fixed rounded-2xl -z-10 animate-pulse"></div>
+<div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary-fixed rounded-full -z-10"></div>
+</div>
+</div>
+</section>
+<!-- Program Studi Unggulan (Bento Grid) -->
+<section class="py-20 px-4 md:px-margin-desktop bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-h2 text-on-surface mb-4">Program Studi Unggulan</h2>
+<p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Pilih jalur pendidikan yang sesuai dengan minat dan passion Anda untuk karir masa depan yang sukses.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Bento Item 1: Main Highlight -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-3xl bg-surface-container-high border border-outline-variant p-8 flex flex-col justify-between transition-all hover:shadow-xl">
+<div class="z-10">
+<div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">code</span>
+</div>
+<h3 class="font-h2 text-on-surface mb-4">SEKOLAH TINGGI ILMU TARBIYAH MAMBAUL HIKMAH</h3>
+<p class="text-on-surface-variant max-w-md mb-8"><span class="a_GcMg font-feature-liga-off font-feature-clig-off font-feature-calt-off text-decoration-none text-strikethrough-none" style="color: rgb(0, 0, 0); caret-color: rgb(0, 0, 0); font-kerning: normal;">merupakan perguruan tinggi Islam yang berkomitmen dalam mencetak generasi unggul, berilmu, dan berakhlak mulia. Berada dalam lingkungan Pondok Pesantren Mambaul Hikmah, kampus ini mengusung sistem pendidikan yang terintegrasi antara keilmuan akademik dan pembinaan karakter berbasis nilai-nilai keislaman.</span><br></p>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-2 text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                    Kurikulum Berbasis Kompetensi Nasional &nbsp;</li>
+<li class="flex items-center gap-2 text-label-md text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                                    Integrasi Pendidikan Unggul Pesantren &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</li>
+</ul>
+</div>
+<button class="self-start text-primary font-label-md flex items-center gap-2 group-hover:translate-x-2 transition-transform">
+                            Lihat Detail Program <span class="material-symbols-outlined">chevron_right</span>
+</button>
+<div class="absolute -bottom-20 -right-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+</div>
+<!-- Bento Item 2 -->
+<div class="group relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-outline-variant p-6 transition-all hover:shadow-lg">
+<div class="w-10 h-10 bg-tertiary/10 text-tertiary rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">business_center</span>
+</div>
+<h4 class="font-h3 text-on-surface text-lg mb-2">S1 Pendidikan Agama Islam (PAI)</h4>
+<p class="text-body-sm text-on-surface-variant">Mencetak entrepreneur muda dan manajer profesional yang inovatif di era digital.</p>
+</div>
+<!-- Bento Item 3 -->
+<div class="group relative overflow-hidden rounded-3xl bg-surface-container-lowest border border-outline-variant p-6 transition-all hover:shadow-lg">
+<div class="w-10 h-10 bg-error-container/20 text-error rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">design_services</span>
+</div>
+<h4 class="font-h3 text-on-surface text-lg mb-2">S1 Pendidikan Bahasa Arab (PBA</h4>
+<p class="text-body-sm text-on-surface-variant">Eksplorasi kreativitas visual dan strategi komunikasi untuk industri kreatif modern.</p>
+</div>
+<!-- Bento Item 4 -->
+<div class="md:col-span-3 bg-primary text-white p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
+<div>
+<h3 class="font-h3 mb-2">Belum menentukan pilihan?</h3>
+<p class="opacity-80">Ikuti tes minat bakat online kami untuk menemukan program studi yang paling cocok untuk Anda.</p>
+</div>
+<button class="bg-white text-primary px-6 py-3 rounded-xl font-label-md shadow-lg shrink-0 hover:bg-blue-50 transition-colors">Ikuti Tes Sekarang</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Jadwal Penting (Horizontal Stepper Style) -->
+<section class="py-20 px-4 md:px-margin-desktop bg-surface-container-low">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+<div>
+<h2 class="font-h2 text-on-surface mb-4">Jadwal Pendaftaran Penting</h2>
+<p class="font-body-md text-on-surface-variant">Pastikan Anda tidak melewatkan setiap tahapan seleksi masuk.</p>
+</div>
+<a class="text-primary font-label-md flex items-center gap-1 border-b-2 border-primary/20 hover:border-primary transition-all" href="#">Lihat Jadwal Lengkap</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Step 1 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4 relative">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-bold text-slate-100 font-h1">01</span>
+<span class="px-2 py-1 rounded bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Berlangsung</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-1">Gelombang 1</h4>
+<p class="text-label-sm text-on-surface-variant">Januari - Maret 2024</p>
+</div>
+<div class="h-1 bg-primary w-full rounded-full"></div>
+</div>
+<!-- Step 2 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-bold text-slate-100 font-h1">02</span>
+<span class="px-2 py-1 rounded bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wider">Segera</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-1">Gelombang 2</h4>
+<p class="text-label-sm text-on-surface-variant">April - Juni 2024</p>
+</div>
+<div class="h-1 bg-slate-200 w-full rounded-full"></div>
+</div>
+<!-- Step 3 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-bold text-slate-100 font-h1">03</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-1">Tes Seleksi Online</h4>
+<p class="text-label-sm text-on-surface-variant">Setiap Sabtu &amp; Minggu</p>
+</div>
+<div class="h-1 bg-slate-200 w-full rounded-full"></div>
+</div>
+<!-- Step 4 -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<span class="text-4xl font-bold text-slate-100 font-h1">04</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface mb-1">Pengumuman &amp; Daftar Ulang</h4>
+<p class="text-label-sm text-on-surface-variant">7 Hari Setelah Tes</p>
+</div>
+<div class="h-1 bg-slate-200 w-full rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-20 px-4 md:px-margin-desktop bg-white">
+<div class="max-w-3xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-h2 text-on-surface mb-4">Pertanyaan Umum (FAQ)</h2>
+<p class="font-body-md text-on-surface-variant">Informasi cepat mengenai pendaftaran dan perkuliahan.</p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="border border-outline-variant rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 bg-surface-container-lowest text-left transition-colors hover:bg-surface-container-low">
+<span class="font-label-md text-on-surface">Apa saja syarat pendaftaran mahasiswa baru?</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="p-6 bg-white border-t border-outline-variant">
+<p class="text-body-sm text-on-surface-variant">Syarat utama meliputi scan ijazah SMA/SMK sederajat (atau surat keterangan lulus), scan KTP/KK, foto resmi terbaru, dan mengikuti rangkaian tes seleksi sesuai program studi pilihan.</p>
+</div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="border border-outline-variant rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 bg-surface-container-lowest text-left transition-colors hover:bg-surface-container-low">
+<span class="font-label-md text-on-surface">Apakah tersedia beasiswa untuk mahasiswa baru?</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<!-- FAQ Item 3 -->
+<div class="border border-outline-variant rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 bg-surface-container-lowest text-left transition-colors hover:bg-surface-container-low">
+<span class="font-label-md text-on-surface">Bagaimana sistem perkuliahan di tahun akademik ini?</span>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+</div>
+</div>
+<div class="mt-12 p-8 bg-blue-50 rounded-2xl border border-blue-100 flex items-center gap-6">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white">support_agent</span>
+</div>
+<div>
+<h4 class="font-label-md text-on-surface">Masih butuh bantuan?</h4>
+<p class="text-label-sm text-on-surface-variant mb-3">Tim admisi kami siap membantu menjawab pertanyaan Anda melalui WhatsApp atau telepon.</p>
+<a class="text-primary font-bold text-label-md hover:underline" href="#">Hubungi Helpdesk PMB →</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 w-full z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 h-20 pb-safe flex justify-around items-center px-2 shadow-lg">
+<a class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-xl px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1;">home</span>
+<span class="font-public-sans text-[10px] font-medium">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="font-public-sans text-[10px] font-medium">Akademik</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-public-sans text-[10px] font-medium">Keuangan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-public-sans text-[10px] font-medium">Profil</span>
+</a>
+</footer>
+<!-- FAB for Quick Registration (Contextual) -->
+<div class="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-40">
+<button class="bg-primary text-white w-14 h-14 md:w-auto md:h-auto md:px-6 md:py-4 rounded-full md:rounded-2xl flex items-center justify-center gap-3 shadow-2xl active:scale-90 transition-all hover:bg-blue-800 group">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="hidden md:block font-label-md">Daftar Sekarang</span>
+</button>
+</div>
+
+
+</body></html>

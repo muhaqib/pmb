@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e2e1ed",
+                    "secondary-fixed": "#e1e3e4",
+                    "on-primary-container": "#d4dcff",
+                    "on-secondary-fixed-variant": "#454748",
+                    "surface-tint": "#1353d8",
+                    "on-secondary-fixed": "#191c1d",
+                    "on-primary-fixed-variant": "#003dab",
+                    "primary": "#003fb1",
+                    "tertiary-container": "#576276",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#434654",
+                    "inverse-surface": "#2e3039",
+                    "on-primary-fixed": "#00174d",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0f0fb",
+                    "on-tertiary-fixed-variant": "#3c475a",
+                    "surface-variant": "#e2e1ed",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#faf8ff",
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "surface-container": "#ededf8",
+                    "tertiary": "#3f4a5e",
+                    "primary-container": "#1a56db",
+                    "error": "#ba1a1a",
+                    "outline": "#737686",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#626566",
+                    "surface-container-low": "#f3f3fe",
+                    "on-surface": "#191b23",
+                    "on-tertiary-container": "#d3def6",
+                    "primary-fixed-dim": "#b5c4ff",
+                    "on-tertiary-fixed": "#111c2d",
+                    "background": "#faf8ff",
+                    "surface-container-high": "#e7e7f3",
+                    "on-background": "#191b23",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#d8e3fb",
+                    "primary-fixed": "#dbe1ff",
+                    "surface": "#faf8ff",
+                    "tertiary-fixed-dim": "#bcc7de",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#c3c5d7",
+                    "secondary-container": "#e1e3e4",
+                    "secondary": "#5c5f60",
+                    "inverse-primary": "#b5c4ff",
+                    "surface-dim": "#d9d9e4",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "1.5rem",
+                    "stack-sm": "0.5rem",
+                    "margin-desktop": "2.5rem",
+                    "margin-mobile": "1rem",
+                    "container-max": "1280px",
+                    "stack-md": "1rem",
+                    "stack-lg": "2rem"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "h3": ["Public Sans"],
+                    "h2": ["Public Sans"],
+                    "h1": ["Public Sans"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h2": ["30px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tap-highlight-transparent {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background-color: #faf8ff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-background">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 border-b border-slate-200 bg-white shadow-sm flex justify-between items-center px-4 h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="account_balance">account_balance</span>
+<h1 class="font-h3 text-xl font-bold text-blue-800">SIAKAD Mobile</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 rounded-full hover:bg-slate-50 transition-all active:scale-95">
+<span class="material-symbols-outlined text-slate-500" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-slate-200">
+<img alt="User Profile" data-alt="A professional close-up studio portrait of a young male student with a friendly expression. The lighting is bright and even, reflecting a clean and modern academic environment. He is wearing a simple casual shirt, and the background is a soft, out-of-focus university hallway with cool blue and white tones that match a professional corporate UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWx1vx9O7EOWDRO-b7_XKrBlG5eY-q_f8Qn4i2pAlOELZeCAMXQqloBu9wItcfJgS0u304VwJv9fwRZLfnaS5AG88lgnume7s1y_krPhlmM8-UFTaNIYXNjpwAzsmiicLc7jqKpbBu4KUzfsOfq-i9Po9SSFRIia4MCpIT_8aJwiI8aNHgfpbvOaNtXeWyBacF4isruInweeziDI7OAgoy7nVW-4RHMidzN61NdyHpxrSf_GC9bXbwlw7FmgYHHQ5HvsUI4DR0oTU"/>
+</div>
+</div>
+</header>
+<!-- Sidebar (Desktop) -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] bg-white border-r border-slate-100 flex-col py-6 shadow-2xl z-40">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person_search" style="font-variation-settings: 'FILL' 1;">person_search</span>
+</div>
+<div>
+<p class="font-h3 text-sm font-bold text-blue-800">Rian Andrianto</p>
+<p class="font-label-sm text-slate-500">2024101088</p>
+</div>
+</div>
+<p class="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mt-4">Program Studi</p>
+<p class="font-label-md text-primary">S1 Teknik Informatika</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 bg-blue-50 text-blue-700 font-bold px-4 py-3 rounded-xl transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 hover:bg-slate-100 px-4 py-3 rounded-xl transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="font-body-md">Pengumuman</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 hover:bg-slate-100 px-4 py-3 rounded-xl transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-md">Kalender Akademik</span>
+</a>
+<a class="flex items-center gap-3 text-slate-600 hover:bg-slate-100 px-4 py-3 rounded-xl transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-body-md">Panduan Pengguna</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full flex items-center gap-3 text-error hover:bg-error-container/10 px-4 py-3 rounded-xl transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md">Keluar</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-24 pb-28 md:pl-[300px] md:pr-8 px-4">
+<!-- Welcome Section -->
+<div class="mb-8">
+<h2 class="font-h2 text-2xl md:text-3xl text-on-surface">Selamat Datang, Rian!</h2>
+<p class="font-body-md text-secondary mt-1">Satu langkah lagi untuk menjadi bagian dari keluarga besar universitas.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Progress Tracker Section -->
+<section class="lg:col-span-8 space-y-6">
+<!-- Registration Progress Card -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h3 text-lg text-primary">Progress Pendaftaran</h3>
+<span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full">75% Selesai</span>
+</div>
+<div class="relative flex justify-between items-start">
+<!-- Progress Line -->
+<div class="absolute top-5 left-0 w-full h-1 bg-slate-100 -z-0">
+<div class="h-full bg-primary" style="width: 75%"></div>
+</div>
+<!-- Steps -->
+<div class="relative z-10 flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-center">Lengkapi Profil</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-center">Upload Dokumen</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-center">Pembayaran</span>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-primary text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
+</div>
+<span class="font-label-sm text-center text-primary font-bold">Tes Seleksi</span>
+</div>
+</div>
+</div>
+<!-- Verification Status Alert -->
+<div class="bg-surface-container-low border-l-4 border-primary p-4 rounded-r-xl flex items-start gap-4 shadow-sm">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="verified_user">verified_user</span>
+<div>
+<h4 class="font-label-md text-primary">Status Verifikasi Berkas</h4>
+<p class="text-sm text-on-surface-variant mt-1">Berkas pendaftaran Anda sedang dalam tahap tinjauan oleh tim admisi. Hasil verifikasi akan diumumkan dalam 2x24 jam.</p>
+</div>
+</div>
+<!-- Bento Grid Actions -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Upload Card 1 -->
+<div class="group bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-blue-50 text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="id_card">id_card</span>
+</div>
+<span class="material-symbols-outlined text-slate-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+<h4 class="font-h3 text-md text-on-surface">Update KTP</h4>
+<p class="text-sm text-secondary mt-1">Pastikan foto KTP terlihat jelas dan tidak terpotong.</p>
+</div>
+<!-- Upload Card 2 -->
+<div class="group bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-blue-50 text-primary rounded-xl group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</div>
+<span class="material-symbols-outlined text-slate-300" data-icon="arrow_forward">arrow_forward</span>
+</div>
+<h4 class="font-h3 text-md text-on-surface">Upload Ijazah</h4>
+<p class="text-sm text-secondary mt-1">Gunakan scan asli ijazah atau SKL yang sudah dilegalisir.</p>
+</div>
+</div>
+</section>
+<!-- Sidebar Info / Selection Result -->
+<aside class="lg:col-span-4 space-y-6">
+<!-- Selection Result Card -->
+<div class="bg-primary text-white p-6 rounded-2xl shadow-xl overflow-hidden relative">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<h3 class="font-h3 text-lg mb-2">Hasil Seleksi</h3>
+<p class="text-white/80 text-sm mb-6">Pengumuman seleksi tahap administrasi akan tersedia pada:</p>
+<div class="flex items-center gap-3 bg-white/20 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<div>
+<p class="font-label-md">Senin, 15 Juli 2024</p>
+<p class="text-xs text-white/70">Pukul 10.00 WIB</p>
+</div>
+</div>
+<button class="w-full mt-6 py-3 bg-white text-primary font-bold rounded-xl active:scale-95 transition-transform">
+                            Lihat Detail Jadwal
+                        </button>
+</div>
+</div>
+<!-- Notification Panel -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
+<div class="p-4 border-b border-slate-50 flex justify-between items-center">
+<h3 class="font-label-md text-on-surface">Notifikasi Terbaru</h3>
+<button class="text-primary text-xs font-bold">Semua</button>
+</div>
+<div class="divide-y divide-slate-50">
+<div class="p-4 flex gap-3 hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="w-2 h-2 mt-2 rounded-full bg-blue-600 shrink-0"></div>
+<div>
+<p class="text-sm text-on-surface">Pembayaran pendaftaran berhasil diverifikasi.</p>
+<p class="text-[10px] text-slate-400 mt-1">2 jam yang lalu</p>
+</div>
+</div>
+<div class="p-4 flex gap-3 hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="w-2 h-2 mt-2 rounded-full bg-slate-200 shrink-0"></div>
+<div>
+<p class="text-sm text-on-surface">Silahkan lengkapi dokumen prestasi (opsional).</p>
+<p class="text-[10px] text-slate-400 mt-1">Kemarin</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg h-20 pb-safe px-2 flex justify-around items-center">
+<a class="flex flex-col items-center justify-center bg-blue-50 text-blue-700 rounded-xl px-3 py-1 transition-transform active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-[10px]">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-transform active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-sm text-[10px]">Akademik</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-transform active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-[10px]">Keuangan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 px-3 py-1 hover:text-blue-600 transition-transform active:scale-90 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-[10px]">Profil</span>
+</a>
+</nav>
+<!-- Floating Action Button Contextual (Book Support/Help) -->
+<button class="fixed right-6 bottom-24 md:bottom-8 w-14 h-14 bg-primary-container text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+</button>
+</body></html>

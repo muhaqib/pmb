@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Biodata extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'agama',
+        'alamat',
+        'jenjang_pendidikan',
+        'nama_sekolah',
+        'tahun_lulus',
+        'nisn'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
