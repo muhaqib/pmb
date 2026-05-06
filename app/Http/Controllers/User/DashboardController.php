@@ -49,6 +49,114 @@ class DashboardController extends Controller
         return view('dashboard.pembayaran', compact('user', 'pembayarans'));
     }
 
+    public function updateFormulir(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'nik' => 'required|string|max:16|unique:users,nik,' . $user->id,
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'agama' => 'required|string|max:50',
+            'no_hp' => 'required|string|max:15',
+            'alamat' => 'required|string',
+            'jenjang' => 'required|string',
+            'nama_sekolah' => 'required|string|max:255',
+            'tahun_lulus' => 'required|integer',
+            'prodi_pilihan' => 'required|string',
+            'gelombang' => 'required|string',
+        ]);
+
+        $user->update([
+            'name' => $request->nama_lengkap,
+            'nik' => $request->nik,
+            'no_hp' => $request->no_hp,
+        ]);
+
+        $user->biodata()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'alamat' => $request->alamat,
+                'jenjang_pendidikan' => $request->jenjang,
+                'nama_sekolah' => $request->nama_sekolah,
+                'tahun_lulus' => $request->tahun_lulus,
+                'nisn' => $request->nisn,
+            ]
+        );
+
+        $user->pendaftaran()->update([
+            'prodi' => $request->prodi_pilihan,
+            'gelombang' => $request->gelombang,
+            'is_profile_complete' => true,
+        ]);
+
+        return redirect()->route('dashboard.formulir')->with('success', 'Formulir berhasil disimpan.');
+    }
+
+    public function uploadDokumen(Request $request)
+    {
+        $request->validate([
+            'jenis_dokumen' => 'required|string',
+            'file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $file = $request->file('file');
+        
+        $fileName = $request->jenis_dokumen . '_' . $user->id . '_' . time() . '.' . $file->extension();
+        $path = $file->storeAs('dokumen', $fileName, 'public');
+
+        $user->dokumens()->updateOrCreate(
+            ['jenis_dokumen' => $request->jenis_dokumen],
+            [
+                'file_path' => 'storage/dokumen/' . $fileName,
+                'file_name' => $file->getClientOriginalName(),
+                'status' => 'pending'
+            ]
+        );
+
+        // Check if required documents are complete
+        $requiredDocs = ['ktp', 'ijazah', 'foto', 'kk'];
+        $uploadedDocs = $user->dokumens()->pluck('jenis_dokumen')->toArray();
+        $isComplete = count(array_intersect($requiredDocs, $uploadedDocs)) === count($requiredDocs);
+
+        if ($isComplete) {
+            $user->pendaftaran()->update(['is_document_uploaded' => true]);
+        }
+
+        return back()->with('success', 'Dokumen berhasil diunggah.');
+    }
+
+    public function uploadPembayaran(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $file = $request->file('file');
+        
+        $fileName = 'pembayaran_' . $user->id . '_' . time() . '.' . $file->extension();
+        $path = $file->storeAs('pembayaran', $fileName, 'public');
+
+        $user->pembayarans()->updateOrCreate(
+            ['jenis_pembayaran' => 'pendaftaran'],
+            [
+                'jumlah' => 250000,
+                'bukti_path' => 'storage/pembayaran/' . $fileName,
+                'status' => 'pending'
+            ]
+        );
+
+        return back()->with('success', 'Bukti pembayaran berhasil diunggah dan sedang diverifikasi.');
+    }
+
     public function pengumuman()
     {
         return view('dashboard.pengumuman');

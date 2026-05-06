@@ -13,18 +13,31 @@
     <p class="text-body-sm text-on-surface-variant mt-1">Lengkapi seluruh data berikut dengan benar dan teliti.</p>
 </div>
 
-{{-- Progress indicator --}}
-<div class="card rounded-2xl mb-8 animate-fade-in" id="form-progress">
-    <div class="flex items-center justify-between mb-3">
-        <span class="text-label-md text-on-surface">Kelengkapan Data</span>
-        <span class="text-label-md text-primary">6 / 8 terisi</span>
+@if(session('success'))
+    <div class="alert alert-success mb-6 animate-fade-in">
+        <span class="material-symbols-outlined text-success mt-0.5 icon-filled">check_circle</span>
+        <div>
+            <h4 class="text-label-md text-on-surface">Sukses</h4>
+            <p class="text-body-sm text-on-surface-variant mt-1">{{ session('success') }}</p>
+        </div>
     </div>
-    <div class="w-full h-2 bg-surface-high rounded-full overflow-hidden">
-        <div class="h-full gradient-primary rounded-full transition-all duration-500" style="width: 75%;"></div>
-    </div>
-</div>
+@endif
 
-<form action="#" method="POST" class="space-y-6" id="formulir-form">
+@if($errors->any())
+    <div class="alert alert-error mb-6 animate-fade-in bg-error/10 border-error/30 text-error">
+        <span class="material-symbols-outlined mt-0.5 icon-filled">error</span>
+        <div>
+            <h4 class="text-label-md">Terdapat Kesalahan</h4>
+            <ul class="list-disc list-inside text-body-sm mt-1">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
+
+<form action="{{ route('dashboard.formulir.update') }}" method="POST" class="space-y-6" id="formulir-form">
     @csrf
 
     {{-- Section: Data Pribadi --}}
@@ -42,42 +55,42 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div class="form-group md:col-span-2">
                 <label for="nama_lengkap" class="form-label">Nama Lengkap <span class="text-error">*</span></label>
-                <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-input" value="Rian Andrianto" required>
+                <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-input" value="{{ old('nama_lengkap', $user->name) }}" required>
             </div>
             <div class="form-group">
                 <label for="nik" class="form-label">NIK (No. KTP) <span class="text-error">*</span></label>
-                <input type="text" id="nik" name="nik" class="form-input" placeholder="16 digit NIK" maxlength="16" required>
+                <input type="text" id="nik" name="nik" class="form-input" placeholder="16 digit NIK" maxlength="16" value="{{ old('nik', $user->nik) }}" required>
             </div>
             <div class="form-group">
                 <label for="tempat_lahir" class="form-label">Tempat Lahir <span class="text-error">*</span></label>
-                <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-input" placeholder="Contoh: Lamongan" required>
+                <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-input" placeholder="Contoh: Lamongan" value="{{ old('tempat_lahir', $biodata->tempat_lahir ?? '') }}" required>
             </div>
             <div class="form-group">
                 <label for="tanggal_lahir" class="form-label">Tanggal Lahir <span class="text-error">*</span></label>
-                <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-input" required>
+                <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-input" value="{{ old('tanggal_lahir', $biodata->tanggal_lahir ?? '') }}" required>
             </div>
             <div class="form-group">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin <span class="text-error">*</span></label>
                 <select id="jenis_kelamin" name="jenis_kelamin" class="form-input form-select" required>
                     <option value="">— Pilih —</option>
-                    <option value="L">Laki-laki</option>
-                    <option value="P">Perempuan</option>
+                    <option value="L" {{ old('jenis_kelamin', $biodata->jenis_kelamin ?? '') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="P" {{ old('jenis_kelamin', $biodata->jenis_kelamin ?? '') == 'P' ? 'selected' : '' }}>Perempuan</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="agama" class="form-label">Agama <span class="text-error">*</span></label>
                 <select id="agama" name="agama" class="form-input form-select" required>
                     <option value="">— Pilih —</option>
-                    <option value="islam" selected>Islam</option>
+                    <option value="islam" {{ old('agama', $biodata->agama ?? 'islam') == 'islam' ? 'selected' : '' }}>Islam</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="no_hp" class="form-label">No. HP / WhatsApp <span class="text-error">*</span></label>
-                <input type="tel" id="no_hp" name="no_hp" class="form-input" placeholder="08xxxxxxxxxx" required>
+                <input type="tel" id="no_hp" name="no_hp" class="form-input" placeholder="08xxxxxxxxxx" value="{{ old('no_hp', $user->no_hp) }}" required>
             </div>
             <div class="form-group md:col-span-2">
                 <label for="alamat" class="form-label">Alamat Lengkap <span class="text-error">*</span></label>
-                <textarea id="alamat" name="alamat" rows="3" class="form-input" placeholder="Desa/Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi" required></textarea>
+                <textarea id="alamat" name="alamat" rows="3" class="form-input" placeholder="Desa/Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi" required>{{ old('alamat', $biodata->alamat ?? '') }}</textarea>
             </div>
         </div>
     </div>
@@ -99,23 +112,23 @@
                 <label for="jenjang" class="form-label">Jenjang Pendidikan <span class="text-error">*</span></label>
                 <select id="jenjang" name="jenjang" class="form-input form-select" required>
                     <option value="">— Pilih —</option>
-                    <option value="sma">SMA / MA</option>
-                    <option value="smk">SMK</option>
-                    <option value="pesantren">Pesantren (Paket C)</option>
-                    <option value="d3">D3 / Sederajat</option>
+                    <option value="sma" {{ old('jenjang', $biodata->jenjang_pendidikan ?? '') == 'sma' ? 'selected' : '' }}>SMA / MA</option>
+                    <option value="smk" {{ old('jenjang', $biodata->jenjang_pendidikan ?? '') == 'smk' ? 'selected' : '' }}>SMK</option>
+                    <option value="pesantren" {{ old('jenjang', $biodata->jenjang_pendidikan ?? '') == 'pesantren' ? 'selected' : '' }}>Pesantren (Paket C)</option>
+                    <option value="d3" {{ old('jenjang', $biodata->jenjang_pendidikan ?? '') == 'd3' ? 'selected' : '' }}>D3 / Sederajat</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="nama_sekolah" class="form-label">Nama Sekolah / Pesantren <span class="text-error">*</span></label>
-                <input type="text" id="nama_sekolah" name="nama_sekolah" class="form-input" placeholder="Contoh: MA Mambaul Hikmah" required>
+                <input type="text" id="nama_sekolah" name="nama_sekolah" class="form-input" placeholder="Contoh: MA Mambaul Hikmah" value="{{ old('nama_sekolah', $biodata->nama_sekolah ?? '') }}" required>
             </div>
             <div class="form-group">
                 <label for="tahun_lulus" class="form-label">Tahun Lulus <span class="text-error">*</span></label>
-                <input type="number" id="tahun_lulus" name="tahun_lulus" class="form-input" placeholder="{{ date('Y') }}" min="2000" max="{{ date('Y') }}" required>
+                <input type="number" id="tahun_lulus" name="tahun_lulus" class="form-input" placeholder="{{ date('Y') }}" min="2000" max="{{ date('Y') }}" value="{{ old('tahun_lulus', $biodata->tahun_lulus ?? '') }}" required>
             </div>
             <div class="form-group">
                 <label for="nisn" class="form-label">NISN</label>
-                <input type="text" id="nisn" name="nisn" class="form-input" placeholder="10 digit NISN" maxlength="10">
+                <input type="text" id="nisn" name="nisn" class="form-input" placeholder="10 digit NISN" maxlength="10" value="{{ old('nisn', $biodata->nisn ?? '') }}">
             </div>
         </div>
     </div>
@@ -137,16 +150,16 @@
                 <label for="prodi_pilihan" class="form-label">Pilihan Program Studi <span class="text-error">*</span></label>
                 <select id="prodi_pilihan" name="prodi_pilihan" class="form-input form-select" required>
                     <option value="">— Pilih Program Studi —</option>
-                    <option value="pai">S1 Pendidikan Agama Islam (PAI)</option>
-                    <option value="pba">S1 Pendidikan Bahasa Arab (PBA)</option>
+                    <option value="pai" {{ old('prodi_pilihan', $pendaftaran->prodi ?? '') == 'pai' ? 'selected' : '' }}>S1 Pendidikan Agama Islam (PAI)</option>
+                    <option value="pba" {{ old('prodi_pilihan', $pendaftaran->prodi ?? '') == 'pba' ? 'selected' : '' }}>S1 Pendidikan Bahasa Arab (PBA)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="gelombang" class="form-label">Gelombang Pendaftaran <span class="text-error">*</span></label>
                 <select id="gelombang" name="gelombang" class="form-input form-select" required>
                     <option value="">— Pilih Gelombang —</option>
-                    <option value="1">Gelombang 1 (Januari - Maret)</option>
-                    <option value="2">Gelombang 2 (April - Juni)</option>
+                    <option value="1" {{ old('gelombang', $pendaftaran->gelombang ?? '') == '1' ? 'selected' : '' }}>Gelombang 1 (Januari - Maret)</option>
+                    <option value="2" {{ old('gelombang', $pendaftaran->gelombang ?? '') == '2' ? 'selected' : '' }}>Gelombang 2 (April - Juni)</option>
                 </select>
             </div>
         </div>
@@ -158,13 +171,9 @@
             <span class="text-error">*</span> Wajib diisi
         </p>
         <div class="flex gap-3 w-full sm:w-auto">
-            <button type="button" class="btn btn-secondary flex-1 sm:flex-initial" id="btn-simpan-draft">
-                <span class="material-symbols-outlined text-lg">save</span>
-                Simpan Draft
-            </button>
             <button type="submit" class="btn btn-primary flex-1 sm:flex-initial" id="btn-submit-formulir">
-                <span class="material-symbols-outlined text-lg">send</span>
-                Kirim Formulir
+                <span class="material-symbols-outlined text-lg">save</span>
+                Simpan Formulir
             </button>
         </div>
     </div>

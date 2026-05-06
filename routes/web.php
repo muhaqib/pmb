@@ -30,9 +30,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Dashboard Routes (Calon Mahasiswa)
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
     Route::get('/formulir', [DashboardController::class, 'formulir'])->name('dashboard.formulir');
+    Route::post('/formulir', [DashboardController::class, 'updateFormulir'])->name('dashboard.formulir.update');
+    
     Route::get('/dokumen', [DashboardController::class, 'dokumen'])->name('dashboard.dokumen');
+    Route::post('/dokumen', [DashboardController::class, 'uploadDokumen'])->name('dashboard.dokumen.upload');
+    
     Route::get('/pembayaran', [DashboardController::class, 'pembayaran'])->name('dashboard.pembayaran');
+    Route::post('/pembayaran', [DashboardController::class, 'uploadPembayaran'])->name('dashboard.pembayaran.upload');
+    
     Route::get('/pengumuman', [DashboardController::class, 'pengumuman'])->name('dashboard.pengumuman');
     Route::get('/jadwal', [DashboardController::class, 'jadwal'])->name('dashboard.jadwal');
 });

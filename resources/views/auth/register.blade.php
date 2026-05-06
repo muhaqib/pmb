@@ -85,18 +85,23 @@
                     <div class="form-group">
                         <label for="reg_email" class="form-label">Email</label>
                         <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">mail</span>
                             <input type="email" id="reg_email" name="email" class="form-input pl-11" placeholder="nama@email.com" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="no_hp" class="form-label">Nomor HP / WhatsApp</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">phone</span>
-                            <input type="tel" id="no_hp" name="no_hp" class="form-input pl-11" placeholder="08xxxxxxxxxx" required>
-                        </div>
-                    </div>
+    <label for="no_hp" class="form-label">Nomor HP / WhatsApp</label>
+    
+    <input 
+        type="tel" 
+        id="no_hp" 
+        name="no_hp" 
+        class="form-input w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="08xxxxxxxxxx"
+        value="{{ old('no_hp') }}" 
+        required
+    >
+</div>
 
                     <div class="form-group">
                         <label for="prodi" class="form-label">Program Studi Pilihan</label>

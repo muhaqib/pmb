@@ -53,12 +53,26 @@
                     <p class="text-body-sm text-on-surface-variant">Masuk ke akun Anda untuk melanjutkan pendaftaran</p>
                 </div>
 
+                @if($errors->any())
+                    <div class="alert alert-error mb-6 bg-error/10 border-error/30 text-error p-4 rounded-xl">
+                        <div class="flex items-start gap-2">
+                            <span class="material-symbols-outlined mt-0.5 icon-filled">error</span>
+                            <div>
+                                <ul class="list-disc list-inside text-body-sm">
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <form action="{{ route('login') }}" method="POST" class="space-y-5" id="login-form">
                     @csrf
                     <div class="form-group">
                         <label for="email" class="form-label">Email atau NIK</label>
                         <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">mail</span>
                             <input type="email" id="email" name="email" class="form-input pl-11" placeholder="nama@email.com" required>
                         </div>
                     </div>
@@ -69,7 +83,6 @@
                             <a href="#" class="text-label-sm text-primary hover:underline">Lupa sandi?</a>
                         </div>
                         <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">lock</span>
                             <input type="password" id="password" name="password" class="form-input pl-11 pr-11" placeholder="Masukkan kata sandi" required>
                             <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors" onclick="togglePassword(this)">
                                 <span class="material-symbols-outlined text-xl">visibility_off</span>
