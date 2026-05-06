@@ -96,16 +96,21 @@ $progress = ($uploadedWajib / $wajibCount) * 100;
                 <p class="text-body-sm text-on-surface truncate">{{ $doc->file_name }}</p>
                 <p class="text-label-sm text-on-surface-variant">Diunggah pada {{ $doc->updated_at->format('d M Y') }}</p>
             </div>
-            @if($doc->status !== 'valid')
-            <form action="{{ route('dashboard.dokumen.upload') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="jenis_dokumen" value="{{ $key }}">
-                <label class="btn btn-ghost btn-sm text-primary cursor-pointer">
-                    <span class="material-symbols-outlined text-lg">refresh</span> Ganti
-                    <input type="file" name="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="this.form.submit()">
-                </label>
-            </form>
-            @endif
+            <div class="flex items-center gap-2">
+                <a href="{{ asset($doc->file_path) }}" target="_blank" class="btn btn-ghost btn-sm text-primary cursor-pointer">
+                    <span class="material-symbols-outlined text-lg">visibility</span> Lihat
+                </a>
+                @if($doc->status !== 'valid')
+                <form action="{{ route('dashboard.dokumen.upload') }}" method="POST" enctype="multipart/form-data" class="m-0">
+                    @csrf
+                    <input type="hidden" name="jenis_dokumen" value="{{ $key }}">
+                    <label class="btn btn-ghost btn-sm text-primary cursor-pointer mb-0">
+                        <span class="material-symbols-outlined text-lg">refresh</span> Ganti
+                        <input type="file" name="file" class="hidden" accept=".pdf,.jpg,.jpeg,.png" onchange="this.form.submit()">
+                    </label>
+                </form>
+                @endif
+            </div>
         </div>
         @else
         <form action="{{ route('dashboard.dokumen.upload') }}" method="POST" enctype="multipart/form-data">

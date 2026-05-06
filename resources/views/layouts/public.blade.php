@@ -100,11 +100,11 @@
                 <div class="flex flex-col gap-3 text-body-sm text-white/60">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-base">location_on</span>
-                        Kec. Karanggeneng, Lamongan
+                        Tegalwangi Kec. Talang Kabupaten Tegal
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-base">phone</span>
-                        (0322) 123-456
+                        (0882) 0052-66580
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-base">mail</span>

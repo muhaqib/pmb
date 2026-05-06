@@ -38,13 +38,21 @@
                 <span class="material-symbols-outlined text-primary icon-filled">person_search</span>
             </div>
             <div>
-                <p class="text-label-md text-primary">Rian Andrianto</p>
-                <p class="text-label-sm text-on-surface-variant">2024101088</p>
+                <p class="text-label-md text-primary">{{ Auth::user()->name }}</p>
+                <p class="text-label-sm text-on-surface-variant">{{ Auth::user()->pendaftaran->no_pendaftaran ?? Auth::user()->nik }}</p>
             </div>
         </div>
         <div class="mt-3">
             <p class="text-label-sm text-on-surface-variant uppercase tracking-wider" style="font-size: 10px;">Program Studi</p>
-            <p class="text-label-md text-primary" style="font-size: 13px;">S1 Pendidikan Agama Islam</p>
+            <p class="text-label-md text-primary" style="font-size: 13px;">
+                @if(Auth::user()->pendaftaran && Auth::user()->pendaftaran->prodi == 'pba')
+                    S1 Pendidikan Bahasa Arab
+                @elseif(Auth::user()->pendaftaran && Auth::user()->pendaftaran->prodi == 'pai')
+                    S1 Pendidikan Agama Islam
+                @else
+                    Belum Memilih Prodi
+                @endif
+            </p>
         </div>
     </div>
 
