@@ -90,4 +90,67 @@ class AdminPendaftarController extends Controller
 
         return back()->with('success', 'Status pembayaran berhasil diperbarui.');
     }
+
+    public function export(Request $request)
+    {
+        $fileName = 'data_pendaftar_' . date('Y-m-d_H-i-s') . '.csv';
+
+        $query = Pendaftaran::with(['user', 'user.biodata']);
+
+        if ($request->has('prodi') && $request->prodi != '') {
+            $query->where('prodi', $request->prodi);
+        }
+        if ($request->has('status_kelulusan') && $request->status_kelulusan != '') {
+            $query->where('status_kelulusan', $request->status_kelulusan);
+        }
+
+        $pendaftar = $query->get();
+
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
+
+        $columns = [
+            'No Pendaftaran', 'Nama Lengkap', 'NIK', 'Email', 'No HP', 
+            'Prodi', 'Status Kelulusan', 'Tempat Lahir', 'Tanggal Lahir', 
+            'Jenis Kelamin', 'Agama', 'Alamat', 'Jenjang Pendidikan', 
+            'Nama Sekolah', 'Tahun Lulus', 'NISN'
+        ];
+
+        $callback = function() use($pendaftar, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+
+            foreach ($pendaftar as $p) {
+                $row = [
+                    $p->no_pendaftaran,
+                    $p->user->name ?? '-',
+                    $p->user->nik ?? '-',
+                    $p->user->email ?? '-',
+                    $p->user->no_hp ?? '-',
+                    strtoupper($p->prodi),
+                    ucfirst(str_replace('_', ' ', $p->status_kelulusan)),
+                    $p->user->biodata->tempat_lahir ?? '-',
+                    $p->user->biodata->tanggal_lahir ?? '-',
+                    $p->user->biodata->jenis_kelamin ?? '-',
+                    $p->user->biodata->agama ?? '-',
+                    $p->user->biodata->alamat ?? '-',
+                    $p->user->biodata->jenjang_pendidikan ?? '-',
+                    $p->user->biodata->nama_sekolah ?? '-',
+                    $p->user->biodata->tahun_lulus ?? '-',
+                    $p->user->biodata->nisn ?? '-'
+                ];
+
+                fputcsv($file, $row);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

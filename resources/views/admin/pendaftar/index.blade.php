@@ -8,6 +8,11 @@
         <h2 class="text-h2 text-on-surface" style="font-size: 28px;">Data Pendaftar</h2>
         <p class="text-body-md text-secondary mt-1">Kelola data calon mahasiswa baru.</p>
     </div>
+    <div>
+        <a href="{{ route('admin.pendaftar.export', request()->all()) }}" class="btn btn-primary bg-success hover:bg-success-light border-none">
+            <span class="material-symbols-outlined">download</span> Unduh Data
+        </a>
+    </div>
 </div>
 
 <div class="card rounded-2xl animate-fade-in">

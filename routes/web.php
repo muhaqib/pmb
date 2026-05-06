@@ -49,6 +49,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/pendaftar', [AdminPendaftarController::class, 'index'])->name('pendaftar.index');
+    Route::get('/pendaftar/export', [AdminPendaftarController::class, 'export'])->name('pendaftar.export');
     Route::get('/pendaftar/{id}', [AdminPendaftarController::class, 'show'])->name('pendaftar.show');
     Route::post('/pendaftar/{id}/kelulusan', [AdminPendaftarController::class, 'setKelulusan'])->name('pendaftar.kelulusan');
     
