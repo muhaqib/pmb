@@ -157,6 +157,44 @@ class DashboardController extends Controller
         return back()->with('success', 'Bukti pembayaran berhasil diunggah dan sedang diverifikasi.');
     }
 
+    public function pembayaranAwal()
+    {
+        $user = Auth::user();
+        $pembayaran = $user->pembayarans()->where('jenis_pembayaran', 'pendaftaran')->latest()->first();
+
+        if ($pembayaran && $pembayaran->status === 'valid') {
+            return redirect()->route('dashboard');
+        }
+
+        return view('dashboard.pembayaran_awal', compact('user', 'pembayaran'));
+    }
+
+    public function uploadPembayaranAwal(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $file = $request->file('file');
+        
+        $fileName = 'pembayaran_' . $user->id . '_' . time() . '.' . $file->extension();
+        $path = $file->storeAs('pembayaran', $fileName, 'public');
+
+        $user->pembayarans()->updateOrCreate(
+            ['jenis_pembayaran' => 'pendaftaran'],
+            [
+                'jumlah' => 250000,
+                'bukti_path' => 'storage/pembayaran/' . $fileName,
+                'status' => 'pending'
+            ]
+        );
+
+        $user->pendaftaran()->update(['is_payment_uploaded' => true]);
+
+        return back()->with('success', 'Bukti pembayaran berhasil diunggah dan sedang diverifikasi.');
+    }
+
     public function pengumuman()
     {
         return view('dashboard.pengumuman');

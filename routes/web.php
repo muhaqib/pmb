@@ -27,8 +27,8 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-// Dashboard Routes (Calon Mahasiswa)
-Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+// Dashboard Routes (Calon Mahasiswa) - Requires Verification
+Route::middleware(['auth', \App\Http\Middleware\CheckPaymentVerification::class])->prefix('dashboard')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/formulir', [DashboardController::class, 'formulir'])->name('dashboard.formulir');
@@ -42,6 +42,12 @@ Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     
     Route::get('/pengumuman', [DashboardController::class, 'pengumuman'])->name('dashboard.pengumuman');
     Route::get('/jadwal', [DashboardController::class, 'jadwal'])->name('dashboard.jadwal');
+});
+
+// Initial Payment Routes (Before verification)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pembayaran-awal', [DashboardController::class, 'pembayaranAwal'])->name('pembayaran.awal');
+    Route::post('/pembayaran-awal', [DashboardController::class, 'uploadPembayaranAwal'])->name('pembayaran.awal.upload');
 });
 
 // Admin Routes

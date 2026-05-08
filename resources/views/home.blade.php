@@ -166,7 +166,7 @@
                     Mencetak pendidik agama Islam yang profesional, kompeten, dan mampu mengintegrasikan nilai-nilai keislaman dalam pendidikan modern.
                 </p>
                 <div class="mt-4 flex items-center gap-2">
-                    <span class="chip chip-success">Akreditasi B</span>
+                    <span class="chip chip-success">Terakreditasi</span>
                 </div>
             </div>
 
@@ -180,7 +180,7 @@
                     Menguasai bahasa Arab secara komprehensif untuk dunia pendidikan dan penerjemahan dengan standar internasional.
                 </p>
                 <div class="mt-4 flex items-center gap-2">
-                    <span class="chip chip-success">Akreditasi B</span>
+                    <span class="chip chip-success">Terakreditasi</span>
                 </div>
             </div>
 
@@ -221,7 +221,7 @@
                 </div>
                 <div>
                     <h4 class="text-label-md text-on-surface mb-1">Gelombang 1</h4>
-                    <p class="text-label-sm text-on-surface-variant">Januari - Maret {{ date('Y') }}</p>
+                    <p class="text-label-sm text-on-surface-variant">5 Mei  - 30 Juni {{ date('Y') }}</p>
                 </div>
                 <div class="h-1 bg-primary w-full rounded-full"></div>
             </div>
@@ -234,7 +234,7 @@
                 </div>
                 <div>
                     <h4 class="text-label-md text-on-surface mb-1">Gelombang 2</h4>
-                    <p class="text-label-sm text-on-surface-variant">April - Juni {{ date('Y') }}</p>
+                    <p class="text-label-sm text-on-surface-variant">1 Juli - 30 Agustus {{ date('Y') }}</p>
                 </div>
                 <div class="h-1 bg-outline-variant w-full rounded-full"></div>
             </div>
@@ -245,8 +245,8 @@
                     <span class="text-h1 text-surface-high" style="font-size: 48px; line-height: 1;">03</span>
                 </div>
                 <div>
-                    <h4 class="text-label-md text-on-surface mb-1">Tes Seleksi Online</h4>
-                    <p class="text-label-sm text-on-surface-variant">Setiap Sabtu & Minggu</p>
+                    <h4 class="text-label-md text-on-surface mb-1">Tes Seleksi </h4>
+                    <p class="text-label-sm text-on-surface-variant"> - </p>
                 </div>
                 <div class="h-1 bg-outline-variant w-full rounded-full"></div>
             </div>
@@ -257,8 +257,8 @@
                     <span class="text-h1 text-surface-high" style="font-size: 48px; line-height: 1;">04</span>
                 </div>
                 <div>
-                    <h4 class="text-label-md text-on-surface mb-1">Pengumuman & Daftar Ulang</h4>
-                    <p class="text-label-sm text-on-surface-variant">7 Hari Setelah Tes</p>
+                    <h4 class="text-label-md text-on-surface mb-1">Pengumuman & Registrasi</h4>
+                    <p class="text-label-sm text-on-surface-variant">-</p>
                 </div>
                 <div class="h-1 bg-outline-variant w-full rounded-full"></div>
             </div>
@@ -292,12 +292,12 @@
             {{-- FAQ Item 2 --}}
             <div class="card rounded-2xl overflow-hidden !p-0 animate-fade-in animate-delay-1" id="faq-2">
                 <button class="w-full flex justify-between items-center p-5 text-left hover:bg-surface-low transition-colors" onclick="toggleFaq(this)">
-                    <span class="text-label-md text-on-surface pr-4">Apakah tersedia beasiswa untuk mahasiswa baru?</span>
+                    <span class="text-label-md text-on-surface pr-4">Apa saja program studi yang tersedia di STIT Mambaul Hikmah?</span>
                     <span class="material-symbols-outlined text-on-surface-variant transition-transform duration-300">expand_more</span>
                 </button>
                 <div class="faq-content hidden px-5 pb-5 border-t border-outline-variant/50">
                     <p class="text-body-sm text-on-surface-variant pt-4">
-                        Ya, tersedia beberapa jenis beasiswa meliputi beasiswa prestasi akademik, beasiswa hafidz Al-Qur'an, beasiswa bidik misi, dan beasiswa dari yayasan. Informasi lebih lanjut dapat dikonsultasikan ke bagian admisi.
+                        Stit Mambaul Hikmah menawarkan dua program studi unggulan yaitu S1 Pendidikan Agama Islam (PAI) dan S1 Pendidikan Bahasa Arab (PBA). Kedua program studi ini dirancang untuk mencetak lulusan yang kompeten di bidangnya dengan kurikulum berbasis kompetensi nasional dan integrasi nilai-nilai keislaman.
                     </p>
                 </div>
             </div>
