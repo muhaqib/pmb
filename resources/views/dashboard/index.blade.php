@@ -139,7 +139,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('dashboard.jadwal') }}" class="btn w-full bg-white text-primary hover:bg-blue-50 transition-colors">
+                <a href="{{ route('dashboard.jadwal') }}" class="btn w-full bg-white text-primary hover:bg-[#f0f9f4] transition-colors">
                     Lihat Detail Jadwal
                 </a>
             </div>

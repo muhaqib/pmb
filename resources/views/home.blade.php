@@ -60,23 +60,8 @@
             <div class="relative rounded-3xl overflow-hidden elevation-3 border-8 border-white aspect-[4/5] md:aspect-square bg-gradient-to-br from-primary/10 to-tertiary/10">
                 {{-- Placeholder Image with gradient --}}
                 <div class="absolute inset-0 gradient-primary opacity-20"></div>
-                <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                    <span class="material-symbols-outlined text-primary icon-filled" style="font-size: 80px;">school</span>
-                    <p class="text-h2 text-primary mt-4">STIT</p>
-                    <p class="text-h3 text-primary-container">Mambaul Hikmah</p>
-                </div>
+                <img src="{{ asset('img/gambar.png') }}" alt="gambar" class="absolute inset-0 w-full h-full object-cover z-10" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-
-                {{-- Accreditation Badge --}}
-                <div class="absolute bottom-6 left-6 right-6 glass p-5 rounded-2xl border border-white/50 elevation-2">
-                    <div class="flex items-center gap-4">
-                        <span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg icon-filled">verified</span>
-                        <div>
-                            <p class="text-label-md text-on-surface">Terakreditasi</p>
-                            <p class="text-label-sm text-on-surface-variant">BAN-PT Sertifikasi</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {{-- Decorative Elements --}}
@@ -190,7 +175,7 @@
                     <h3 class="text-h3 mb-2">Belum menentukan pilihan?</h3>
                     <p class="text-body-md text-white/80">Konsultasikan langsung dengan tim admisi kami untuk menemukan program studi yang paling cocok untuk Anda.</p>
                 </div>
-                <a href="#" class="btn bg-white text-primary hover:bg-blue-50 transition-colors shrink-0 elevation-1" id="btn-konsultasi">
+                <a href="#" class="btn bg-white text-primary hover:bg-[#f0f9f4] transition-colors shrink-0 elevation-1" id="btn-konsultasi">
                     Konsultasi Sekarang
                 </a>
             </div>
@@ -355,7 +340,7 @@
         <h2 class="text-h2 mb-4" style="color: white;">Siap Memulai Perjalanan Akademik Anda?</h2>
         <p class="text-body-lg text-white/80 mb-8 max-w-xl mx-auto">Daftarkan diri Anda sekarang dan jadilah bagian dari generasi unggul STIT Mambaul Hikmah.</p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('register') }}" class="btn btn-lg bg-white text-primary hover:bg-blue-50 transition-colors elevation-2" id="btn-cta-register">
+            <a href="{{ route('register') }}" class="btn btn-lg bg-white text-primary hover:bg-[#f0f9f4] transition-colors elevation-2" id="btn-cta-register">
                 Mulai Pendaftaran
                 <span class="material-symbols-outlined">arrow_forward</span>
             </a>

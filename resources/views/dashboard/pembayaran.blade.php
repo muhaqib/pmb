@@ -61,7 +61,7 @@
                                     <p class="text-label-sm text-on-surface-variant">Gelombang {{ Auth::user()->pendaftaran->gelombang ?? '1' }} - {{ date('Y') }}</p>
                                 </div>
                             </td>
-                            <td class="text-label-md">Rp 250.000</td>
+                            <td class="text-label-md">Rp 150.000</td>
                             <td>
                                 @php
                                     $pendaftaranBayar = $pembayarans->where('jenis_pembayaran', 'pendaftaran')->first();

@@ -184,7 +184,7 @@ class DashboardController extends Controller
         $user->pembayarans()->updateOrCreate(
             ['jenis_pembayaran' => 'pendaftaran'],
             [
-                'jumlah' => 250000,
+                'jumlah' => 150000,
                 'bukti_path' => 'storage/pembayaran/' . $fileName,
                 'status' => 'pending'
             ]

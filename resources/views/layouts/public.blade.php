@@ -6,10 +6,10 @@
     <div class="max-w-[1280px] mx-auto h-full flex items-center justify-between px-4 md:px-10">
         {{-- Logo --}}
         <a href="{{ route('home') }}" class="flex items-center gap-3 group" id="logo-link">
-            <div class="w-10 h-10 rounded-lg gradient-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-white text-xl icon-filled">school</span>
+            <div class="w-12 h-12 flex items-center justify-center">
+                <img src="{{ asset('img/logostit.png') }}" alt="STIT Logo" class="max-h-full w-auto" />
             </div>
-            <span class="text-h3 text-primary hidden sm:block" style="font-size: 18px;">STIT Mambaul Hikmah</span>
+            <span class="text-h3 text-primary hidden sm:block" style="font-size: 16px;">STIT Mambaul Hikmah</span>
         </a>
 
         {{-- Desktop Nav --}}
