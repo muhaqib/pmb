@@ -17,6 +17,7 @@ class User extends Authenticatable
         'nik',
         'no_hp',
         'role',
+        'kategori',
     ];
 
     protected $hidden = [

@@ -50,6 +50,7 @@ class AuthController extends Controller
             'nik' => ['required', 'string', 'size:16', 'unique:users,nik'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'no_hp' => ['required', 'string', 'max:15'],
+            'kategori' => ['required', 'in:umum,santri'],
             'prodi' => ['required', 'string'],
             'password' => ['required', 'confirmed', 'min:8'],
         ]);
@@ -59,6 +60,7 @@ class AuthController extends Controller
             'email' => $request->email,
             'nik' => $request->nik,
             'no_hp' => $request->no_hp,
+            'kategori' => $request->kategori,
             'password' => Hash::make($request->password),
             'role' => 'calon_mahasiswa',
         ]);

@@ -104,6 +104,15 @@
 </div>
 
                     <div class="form-group">
+                        <label for="kategori" class="form-label">Kategori Pendaftar</label>
+                        <select id="kategori" name="kategori" class="form-input form-select" required>
+                            <option value="">— Pilih Kategori —</option>
+                            <option value="umum">Umum</option>
+                            <option value="santri">Santri</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label for="prodi" class="form-label">Program Studi Pilihan</label>
                         <select id="prodi" name="prodi" class="form-input form-select" required>
                             <option value="">— Pilih Program Studi —</option>

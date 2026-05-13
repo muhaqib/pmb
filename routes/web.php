@@ -57,6 +57,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/pendaftar', [AdminPendaftarController::class, 'index'])->name('pendaftar.index');
     Route::get('/pendaftar/export', [AdminPendaftarController::class, 'export'])->name('pendaftar.export');
     Route::get('/pendaftar/{id}', [AdminPendaftarController::class, 'show'])->name('pendaftar.show');
+    Route::get('/pendaftar/{id}/edit', [AdminPendaftarController::class, 'edit'])->name('pendaftar.edit');
+    Route::post('/pendaftar/{id}/update', [AdminPendaftarController::class, 'update'])->name('pendaftar.update');
     Route::post('/pendaftar/{id}/kelulusan', [AdminPendaftarController::class, 'setKelulusan'])->name('pendaftar.kelulusan');
     
     Route::post('/dokumen/{id}/verifikasi', [AdminPendaftarController::class, 'verifikasiDokumen'])->name('dokumen.verifikasi');

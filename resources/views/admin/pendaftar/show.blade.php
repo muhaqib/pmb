@@ -14,6 +14,9 @@
     </div>
     
     <div class="flex gap-2">
+        <a href="{{ route('admin.pendaftar.edit', $pendaftaran->id) }}" class="btn btn-secondary">
+            <span class="material-symbols-outlined text-base">edit</span> Edit Data
+        </a>
         <form action="{{ route('admin.pendaftar.kelulusan', $pendaftaran->id) }}" method="POST" class="inline-block">
             @csrf
             <input type="hidden" name="status_kelulusan" value="lulus">
@@ -41,7 +44,10 @@
                 </div>
                 <div>
                     <h3 class="text-h3 text-on-surface" style="font-size: 20px;">{{ $pendaftaran->user->name }}</h3>
-                    <p class="text-body-sm text-on-surface-variant">{{ $pendaftaran->user->email }} | {{ $pendaftaran->user->no_hp }}</p>
+                    <p class="text-body-sm text-on-surface-variant">
+                        {{ $pendaftaran->user->email }} | {{ $pendaftaran->user->no_hp }} | 
+                        <span class="chip chip-secondary text-[10px] uppercase">{{ $pendaftaran->user->kategori ?? 'umum' }}</span>
+                    </p>
                 </div>
                 <div class="ml-auto text-right">
                     <p class="text-label-sm text-on-surface-variant">No. Pendaftaran</p>
@@ -72,6 +78,36 @@
                 <div class="md:col-span-2">
                     <p class="text-label-sm text-on-surface-variant">Alamat Lengkap</p>
                     <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->alamat ?? '-' }}</p>
+                </div>
+            </div>
+            
+            <hr class="border-outline-variant/30 my-4">
+            
+            <h4 class="text-label-md text-primary mb-3">Data Orang Tua / Wali</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-6">
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Nama Ayah</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->nama_ayah ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Pekerjaan Ayah</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->pekerjaan_ayah ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Nama Ibu</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->nama_ibu ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Pekerjaan Ibu</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->pekerjaan_ibu ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Nama Wali</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->nama_wali ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-label-sm text-on-surface-variant">Pekerjaan Wali</p>
+                    <p class="text-body-sm text-on-surface">{{ $pendaftaran->user->biodata->pekerjaan_wali ?? '-' }}</p>
                 </div>
             </div>
             

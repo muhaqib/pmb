@@ -61,10 +61,17 @@ class DashboardController extends Controller
             'jenis_kelamin' => 'required|in:L,P',
             'agama' => 'required|string|max:50',
             'no_hp' => 'required|string|max:15',
+            'kategori' => 'required|in:umum,santri',
             'alamat' => 'required|string',
             'jenjang' => 'required|string',
             'nama_sekolah' => 'required|string|max:255',
             'tahun_lulus' => 'required|integer',
+            'nama_ayah' => 'required|string|max:255',
+            'pekerjaan_ayah' => 'required|string|max:255',
+            'nama_ibu' => 'required|string|max:255',
+            'pekerjaan_ibu' => 'required|string|max:255',
+            'nama_wali' => 'nullable|string|max:255',
+            'pekerjaan_wali' => 'nullable|string|max:255',
             'prodi_pilihan' => 'required|string',
             'gelombang' => 'required|string',
         ]);
@@ -73,6 +80,7 @@ class DashboardController extends Controller
             'name' => $request->nama_lengkap,
             'nik' => $request->nik,
             'no_hp' => $request->no_hp,
+            'kategori' => $request->kategori,
         ]);
 
         $user->biodata()->updateOrCreate(
@@ -87,6 +95,12 @@ class DashboardController extends Controller
                 'nama_sekolah' => $request->nama_sekolah,
                 'tahun_lulus' => $request->tahun_lulus,
                 'nisn' => $request->nisn,
+                'nama_ayah' => $request->nama_ayah,
+                'pekerjaan_ayah' => $request->pekerjaan_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'nama_wali' => $request->nama_wali,
+                'pekerjaan_wali' => $request->pekerjaan_wali,
             ]
         );
 
@@ -148,7 +162,7 @@ class DashboardController extends Controller
         $user->pembayarans()->updateOrCreate(
             ['jenis_pembayaran' => 'pendaftaran'],
             [
-                'jumlah' => 250000,
+                'jumlah' => 150000,
                 'bukti_path' => 'storage/pembayaran/' . $fileName,
                 'status' => 'pending'
             ]

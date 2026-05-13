@@ -60,7 +60,9 @@
             <div class="relative rounded-3xl overflow-hidden elevation-3 border-8 border-white aspect-[4/5] md:aspect-square bg-gradient-to-br from-primary/10 to-tertiary/10">
                 {{-- Placeholder Image with gradient --}}
                 <div class="absolute inset-0 gradient-primary opacity-20"></div>
-                <img src="{{ asset('img/gambar.png') }}" alt="gambar" class="absolute inset-0 w-full h-full object-cover z-10" />
+                <img id="hero-image-1" src="{{ asset('img/gambar.png') }}" alt="gambar" class="absolute inset-0 w-full h-full object-cover z-10" style="opacity: 1; transition: opacity 0.8s ease;" />
+                <img id="hero-image-2" src="{{ asset('img/gambar2.jpeg') }}" alt="gambar" class="absolute inset-0 w-full h-full object-cover z-10" style="opacity: 0; transition: opacity 0.8s ease;" />
+                <img id="hero-image-3" src="{{ asset('img/gambar3.jpeg') }}" alt="gambar" class="absolute inset-0 w-full h-full object-cover z-10" style="opacity: 0; transition: opacity 0.8s ease;" />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>
 
@@ -70,6 +72,26 @@
         </div>
     </div>
 </section>
+
+<script>
+    (function() {
+        const heroImages = [
+            document.getElementById('hero-image-1'),
+            document.getElementById('hero-image-2'),
+            document.getElementById('hero-image-3'),
+        ];
+        let currentIndex = 0;
+
+        if (heroImages.every(Boolean)) {
+            setInterval(() => {
+                const nextIndex = (currentIndex + 1) % heroImages.length;
+                heroImages[currentIndex].style.opacity = '0';
+                heroImages[nextIndex].style.opacity = '1';
+                currentIndex = nextIndex;
+            }, 6000);
+        }
+    })();
+</script>
 
 {{-- Statistics Section --}}
 <section class="py-12 bg-primary text-white relative overflow-hidden" id="stats">

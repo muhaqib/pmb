@@ -39,6 +39,14 @@
                 <option value="tidak_lulus" {{ request('status_kelulusan') == 'tidak_lulus' ? 'selected' : '' }}>Tidak Lulus</option>
             </select>
         </div>
+        <div>
+            <label class="text-label-sm text-on-surface-variant block mb-1">Kategori</label>
+            <select name="kategori" class="form-input form-select text-sm">
+                <option value="">Semua Kategori</option>
+                <option value="umum" {{ request('kategori') == 'umum' ? 'selected' : '' }}>Umum</option>
+                <option value="santri" {{ request('kategori') == 'santri' ? 'selected' : '' }}>Santri</option>
+            </select>
+        </div>
         <div class="flex items-end">
             <button type="submit" class="btn btn-primary w-full h-[42px]">
                 <span class="material-symbols-outlined">search</span> Cari

@@ -85,6 +85,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="kategori" class="form-label">Kategori Pendaftar <span class="text-error">*</span></label>
+                <select id="kategori" name="kategori" class="form-input form-select" required>
+                    <option value="">— Pilih —</option>
+                    <option value="umum" {{ old('kategori', $user->kategori ?? '') == 'umum' ? 'selected' : '' }}>Umum</option>
+                    <option value="santri" {{ old('kategori', $user->kategori ?? '') == 'santri' ? 'selected' : '' }}>Santri</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="no_hp" class="form-label">No. HP / WhatsApp <span class="text-error">*</span></label>
                 <input type="tel" id="no_hp" name="no_hp" class="form-input" placeholder="08xxxxxxxxxx" value="{{ old('no_hp', $user->no_hp) }}" required>
             </div>
@@ -129,6 +137,46 @@
             <div class="form-group">
                 <label for="nisn" class="form-label">NISN</label>
                 <input type="text" id="nisn" name="nisn" class="form-input" placeholder="10 digit NISN" maxlength="10" value="{{ old('nisn', $biodata->nisn ?? '') }}">
+            </div>
+        </div>
+    </div>
+
+    {{-- Section: Data Orang Tua / Wali --}}
+    <div class="card rounded-2xl animate-fade-in animate-delay-2" id="section-ortu">
+        <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center">
+                <span class="material-symbols-outlined text-white text-xl">family_restroom</span>
+            </div>
+            <div>
+                <h3 class="text-h3" style="font-size: 18px;">Data Orang Tua / Wali</h3>
+                <p class="text-body-sm text-on-surface-variant">Informasi identitas orang tua atau wali</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="form-group">
+                <label for="nama_ayah" class="form-label">Nama Ayah <span class="text-error">*</span></label>
+                <input type="text" id="nama_ayah" name="nama_ayah" class="form-input" placeholder="Nama lengkap ayah" value="{{ old('nama_ayah', $biodata->nama_ayah ?? '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="pekerjaan_ayah" class="form-label">Pekerjaan Ayah <span class="text-error">*</span></label>
+                <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah" class="form-input" placeholder="Contoh: Buruh, PNS, Wiraswasta" value="{{ old('pekerjaan_ayah', $biodata->pekerjaan_ayah ?? '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="nama_ibu" class="form-label">Nama Ibu <span class="text-error">*</span></label>
+                <input type="text" id="nama_ibu" name="nama_ibu" class="form-input" placeholder="Nama lengkap ibu" value="{{ old('nama_ibu', $biodata->nama_ibu ?? '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="pekerjaan_ibu" class="form-label">Pekerjaan Ibu <span class="text-error">*</span></label>
+                <input type="text" id="pekerjaan_ibu" name="pekerjaan_ibu" class="form-input" placeholder="Contoh: Ibu Rumah Tangga, Guru" value="{{ old('pekerjaan_ibu', $biodata->pekerjaan_ibu ?? '') }}" required>
+            </div>
+            <div class="form-group">
+                <label for="nama_wali" class="form-label">Nama Wali (Opsional)</label>
+                <input type="text" id="nama_wali" name="nama_wali" class="form-input" placeholder="Nama lengkap wali" value="{{ old('nama_wali', $biodata->nama_wali ?? '') }}">
+            </div>
+            <div class="form-group">
+                <label for="pekerjaan_wali" class="form-label">Pekerjaan Wali (Opsional)</label>
+                <input type="text" id="pekerjaan_wali" name="pekerjaan_wali" class="form-input" placeholder="Pekerjaan wali" value="{{ old('pekerjaan_wali', $biodata->pekerjaan_wali ?? '') }}">
             </div>
         </div>
     </div>

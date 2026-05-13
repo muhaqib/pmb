@@ -16,7 +16,13 @@ class Biodata extends Model
         'jenjang_pendidikan',
         'nama_sekolah',
         'tahun_lulus',
-        'nisn'
+        'nisn',
+        'nama_ayah',
+        'pekerjaan_ayah',
+        'nama_ibu',
+        'pekerjaan_ibu',
+        'nama_wali',
+        'pekerjaan_wali',
     ];
 
     public function user()

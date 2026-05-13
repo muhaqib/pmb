@@ -23,6 +23,12 @@ class AdminPendaftarController extends Controller
             $query->where('status_kelulusan', $request->status_kelulusan);
         }
 
+        if ($request->has('kategori') && $request->kategori != '') {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('kategori', $request->kategori);
+            });
+        }
+
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
             $query->whereHas('user', function($q) use ($search) {
@@ -54,6 +60,79 @@ class AdminPendaftarController extends Controller
         $pendaftaran->save();
 
         return back()->with('success', 'Status kelulusan berhasil diperbarui.');
+    }
+
+    public function edit($id)
+    {
+        $pendaftaran = Pendaftaran::with(['user.biodata'])->findOrFail($id);
+        $user = $pendaftaran->user;
+        $biodata = $user->biodata;
+        
+        return view('admin.pendaftar.edit', compact('pendaftaran', 'user', 'biodata'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $user = $pendaftaran->user;
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'nik' => 'required|string|max:16|unique:users,nik,' . $user->id,
+            'kategori' => 'required|in:umum,santri',
+            'no_hp' => 'required|string|max:15',
+            'prodi' => 'required|string',
+            'gelombang' => 'required|string',
+            'tempat_lahir' => 'required|string|max:255',
+            'tanggal_lahir' => 'required|date',
+            'jenis_kelamin' => 'required|in:L,P',
+            'agama' => 'required|string|max:50',
+            'alamat' => 'required|string',
+            'jenjang_pendidikan' => 'required|string',
+            'nama_sekolah' => 'required|string|max:255',
+            'tahun_lulus' => 'required|integer',
+            'nama_ayah' => 'required|string|max:255',
+            'pekerjaan_ayah' => 'required|string|max:255',
+            'nama_ibu' => 'required|string|max:255',
+            'pekerjaan_ibu' => 'required|string|max:255',
+            'nama_wali' => 'nullable|string|max:255',
+            'pekerjaan_wali' => 'nullable|string|max:255',
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'no_hp' => $request->no_hp,
+            'kategori' => $request->kategori,
+        ]);
+
+        $user->biodata()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'alamat' => $request->alamat,
+                'jenjang_pendidikan' => $request->jenjang_pendidikan,
+                'nama_sekolah' => $request->nama_sekolah,
+                'tahun_lulus' => $request->tahun_lulus,
+                'nisn' => $request->nisn,
+                'nama_ayah' => $request->nama_ayah,
+                'pekerjaan_ayah' => $request->pekerjaan_ayah,
+                'nama_ibu' => $request->nama_ibu,
+                'pekerjaan_ibu' => $request->pekerjaan_ibu,
+                'nama_wali' => $request->nama_wali,
+                'pekerjaan_wali' => $request->pekerjaan_wali,
+            ]
+        );
+
+        $pendaftaran->update([
+            'prodi' => $request->prodi,
+            'gelombang' => $request->gelombang,
+        ]);
+
+        return redirect()->route('admin.pendaftar.show', $id)->with('success', 'Data pendaftar berhasil diperbarui.');
     }
 
     public function verifikasiDokumen(Request $request, $id)
@@ -103,6 +182,11 @@ class AdminPendaftarController extends Controller
         if ($request->has('status_kelulusan') && $request->status_kelulusan != '') {
             $query->where('status_kelulusan', $request->status_kelulusan);
         }
+        if ($request->has('kategori') && $request->kategori != '') {
+            $query->whereHas('user', function($q) use ($request) {
+                $q->where('kategori', $request->kategori);
+            });
+        }
 
         $pendaftar = $query->get();
 
@@ -115,10 +199,12 @@ class AdminPendaftarController extends Controller
         );
 
         $columns = [
-            'No Pendaftaran', 'Nama Lengkap', 'NIK', 'Email', 'No HP', 
+            'No Pendaftaran', 'Nama Lengkap', 'NIK', 'Email', 'No HP', 'Kategori',
             'Prodi', 'Status Kelulusan', 'Tempat Lahir', 'Tanggal Lahir', 
             'Jenis Kelamin', 'Agama', 'Alamat', 'Jenjang Pendidikan', 
-            'Nama Sekolah', 'Tahun Lulus', 'NISN'
+            'Nama Sekolah', 'Tahun Lulus', 'NISN', 
+            'Nama Ayah', 'Pekerjaan Ayah', 'Nama Ibu', 'Pekerjaan Ibu', 
+            'Nama Wali', 'Pekerjaan Wali'
         ];
 
         $callback = function() use($pendaftar, $columns) {
@@ -132,6 +218,7 @@ class AdminPendaftarController extends Controller
                     $p->user->nik ?? '-',
                     $p->user->email ?? '-',
                     $p->user->no_hp ?? '-',
+                    $p->user->kategori ?? 'umum',
                     strtoupper($p->prodi),
                     ucfirst(str_replace('_', ' ', $p->status_kelulusan)),
                     $p->user->biodata->tempat_lahir ?? '-',
@@ -142,7 +229,13 @@ class AdminPendaftarController extends Controller
                     $p->user->biodata->jenjang_pendidikan ?? '-',
                     $p->user->biodata->nama_sekolah ?? '-',
                     $p->user->biodata->tahun_lulus ?? '-',
-                    $p->user->biodata->nisn ?? '-'
+                    $p->user->biodata->nisn ?? '-',
+                    $p->user->biodata->nama_ayah ?? '-',
+                    $p->user->biodata->pekerjaan_ayah ?? '-',
+                    $p->user->biodata->nama_ibu ?? '-',
+                    $p->user->biodata->pekerjaan_ibu ?? '-',
+                    $p->user->biodata->nama_wali ?? '-',
+                    $p->user->biodata->pekerjaan_wali ?? '-'
                 ];
 
                 fputcsv($file, $row);

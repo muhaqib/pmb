@@ -502,15 +502,15 @@
                     <div class="info-row">
                         <span class="info-label">Nomor Rekening</span>
                         <span class="info-value">
-                            7339306308
-                            <button class="copy-btn" onclick="copyText('7339306308', this)" type="button">
+                            1103010302
+                            <button class="copy-btn" onclick="copyText('1103010302', this)" type="button">
                                 <span class="material-symbols-outlined">content_copy</span>Salin
                             </button>
                         </span>
                     </div>
                     <div class="info-row">
                         <span class="info-label">Atas Nama</span>
-                        <span class="info-value">PMB STIT Mambaul Hikmah</span>
+                        <span class="info-value">STIT MAMBAUL HIKMAH</span>
                     </div>
                 </div>
             </div>
