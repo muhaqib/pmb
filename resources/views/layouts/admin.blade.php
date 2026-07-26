@@ -44,8 +44,8 @@
             <span class="material-symbols-outlined">folder_open</span>
             Verifikasi Dokumen
         </a>
-        <a href="#" class="sidebar-nav-item">
-            <span class="material-symbols-outlined">account_balance_wallet</span>
+        <a href="{{ route('admin.pembayaran.index') }}" class="sidebar-nav-item {{ request()->routeIs('admin.pembayaran.*') ? 'sidebar-nav-item-active' : '' }}">
+            <span class="material-symbols-outlined {{ request()->routeIs('admin.pembayaran.*') ? 'icon-filled' : '' }}">account_balance_wallet</span>
             Verifikasi Pembayaran
         </a>
         <a href="#" class="sidebar-nav-item">

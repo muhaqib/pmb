@@ -93,9 +93,18 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('admin.pendaftar.show', $p->id) }}" class="btn btn-sm btn-secondary text-xs">
-                            <span class="material-symbols-outlined text-sm">visibility</span> Detail
-                        </a>
+                        <div class="flex items-center gap-1.5">
+                            <a href="{{ route('admin.pendaftar.show', $p->id) }}" class="btn btn-sm btn-secondary text-xs">
+                                <span class="material-symbols-outlined text-sm">visibility</span> Detail
+                            </a>
+                            <form action="{{ route('admin.pendaftar.destroy', $p->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus SELURUH data pendaftar ini ({{ $p->user->name ?? $p->no_pendaftaran }})? Data yang dihapus tidak dapat dikembalikan.')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger text-xs hover:bg-error/90">
+                                    <span class="material-symbols-outlined text-sm">delete</span> Hapus
+                                </button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 @empty

@@ -13,7 +13,7 @@
         <h2 class="text-h2 text-on-surface" style="font-size: 28px;">Detail Pendaftar</h2>
     </div>
     
-    <div class="flex gap-2">
+    <div class="flex flex-wrap gap-2">
         <a href="{{ route('admin.pendaftar.edit', $pendaftaran->id) }}" class="btn btn-secondary">
             <span class="material-symbols-outlined text-base">edit</span> Edit Data
         </a>
@@ -27,8 +27,15 @@
         <form action="{{ route('admin.pendaftar.kelulusan', $pendaftaran->id) }}" method="POST" class="inline-block">
             @csrf
             <input type="hidden" name="status_kelulusan" value="tidak_lulus">
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Nyatakan TIDAK LULUS untuk pendaftar ini?')">
+            <button type="submit" class="btn btn-warning" onclick="return confirm('Nyatakan TIDAK LULUS untuk pendaftar ini?')">
                 <span class="material-symbols-outlined text-base">cancel</span> Tidak Lulus
+            </button>
+        </form>
+        <form action="{{ route('admin.pendaftar.destroy', $pendaftaran->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Apakah Anda yakin ingin menghapus SELURUH data pendaftar ini ({{ $pendaftaran->user->name ?? $pendaftaran->no_pendaftaran }})? Seluruh data biodata, berkas dokumen, dan riwayat pembayaran akan dihapus secara permanen.')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+                <span class="material-symbols-outlined text-base">delete</span> Hapus Pendaftar
             </button>
         </form>
     </div>

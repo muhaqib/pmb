@@ -246,4 +246,41 @@ class AdminPendaftarController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+    public function destroy($id)
+    {
+        $pendaftaran = Pendaftaran::with(['user', 'user.dokumens', 'user.pembayarans', 'user.biodata'])->findOrFail($id);
+        $user = $pendaftaran->user;
+
+        if ($user) {
+            // Hapus file fisik dokumen jika ada
+            if ($user->dokumens) {
+                foreach ($user->dokumens as $dokumen) {
+                    if ($dokumen->file_path && file_exists(public_path($dokumen->file_path))) {
+                        @unlink(public_path($dokumen->file_path));
+                    }
+                }
+            }
+
+            // Hapus file fisik bukti pembayaran jika ada
+            if ($user->pembayarans) {
+                foreach ($user->pembayarans as $pembayaran) {
+                    if ($pembayaran->bukti_path && file_exists(public_path($pembayaran->bukti_path))) {
+                        @unlink(public_path($pembayaran->bukti_path));
+                    }
+                }
+            }
+
+            // Hapus relasi pendukung dan akun user
+            $user->biodata()?->delete();
+            $user->dokumens()?->delete();
+            $user->pembayarans()?->delete();
+            $user->pendaftaran()?->delete();
+            $user->delete();
+        } else {
+            $pendaftaran->delete();
+        }
+
+        return redirect()->route('admin.pendaftar.index')->with('success', 'Data pendaftar beserta seluruh berkas terkait berhasil dihapus permanen.');
+    }
 }

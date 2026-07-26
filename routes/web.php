@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminPendaftarController;
+use App\Http\Controllers\Admin\AdminPembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/login-admin', [AuthController::class, 'showAdminLogin'])->name('login.admin');
+    Route::post('/login-admin', [AuthController::class, 'adminLogin']);
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 });
@@ -51,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Admin Routes
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/pendaftar', [AdminPendaftarController::class, 'index'])->name('pendaftar.index');
@@ -63,4 +66,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     
     Route::post('/dokumen/{id}/verifikasi', [AdminPendaftarController::class, 'verifikasiDokumen'])->name('dokumen.verifikasi');
     Route::post('/pembayaran/{id}/verifikasi', [AdminPendaftarController::class, 'verifikasiPembayaran'])->name('pembayaran.verifikasi');
+    Route::delete('/pendaftar/{id}', [AdminPendaftarController::class, 'destroy'])->name('pendaftar.destroy');
+
+    // Verifikasi Pembayaran Routes
+    Route::get('/pembayaran', [AdminPembayaranController::class, 'index'])->name('pembayaran.index');
+    Route::post('/pembayaran/{id}/status', [AdminPembayaranController::class, 'updateStatus'])->name('pembayaran.update-status');
 });

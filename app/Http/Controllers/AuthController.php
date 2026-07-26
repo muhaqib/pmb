@@ -24,13 +24,50 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
-            $request->session()->regenerate();
-            
             if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/admin/dashboard');
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Akses ditolak. Administrator hanya dapat login melalui halaman khusus Admin.',
+                ])->onlyInput('email');
             }
 
+            $request->session()->regenerate();
             return redirect()->intended('/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',
+        ])->onlyInput('email');
+    }
+
+    public function showAdminLogin()
+    {
+        return view('auth.login-admin');
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            if (Auth::user()->role !== 'admin') {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Akses ditolak. Halaman ini khusus untuk Administrator.',
+                ])->onlyInput('email');
+            }
+
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/dashboard');
         }
 
         return back()->withErrors([
