@@ -7,7 +7,9 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -116,6 +118,64 @@ class AuthController extends Controller
         Auth::login($user);
 
         return redirect('/dashboard');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback(Request $request)
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect()->route('login')->withErrors([
+                'email' => 'Gagal melakukan otentikasi dengan Google. Silakan coba lagi.',
+            ]);
+        }
+
+        $user = User::where('google_id', $googleUser->getId())->first();
+
+        if (!$user) {
+            $user = User::where('email', $googleUser->getEmail())->first();
+
+            if ($user) {
+                $user->update([
+                    'google_id' => $googleUser->getId(),
+                ]);
+            } else {
+                $user = User::create([
+                    'name' => $googleUser->getName() ?? $googleUser->getNickname() ?? 'Pengguna Google',
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
+                    'role' => 'calon_mahasiswa',
+                    'password' => Hash::make(Str::random(24)),
+                ]);
+
+                Pendaftaran::create([
+                    'user_id' => $user->id,
+                    'no_pendaftaran' => 'PMB-' . date('Y') . '-' . str_pad($user->id, 3, '0', STR_PAD_LEFT),
+                    'prodi' => 'pai',
+                    'gelombang' => '1',
+                    'is_profile_complete' => false,
+                    'is_document_uploaded' => false,
+                    'is_payment_uploaded' => false,
+                    'status_kelulusan' => 'pending',
+                ]);
+            }
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        // Cek apakah pengguna sudah melakukan pembayaran pendaftaran dan diverifikasi
+        $pembayaran = $user->pembayarans()->where('jenis_pembayaran', 'pendaftaran')->latest()->first();
+        if (!$pembayaran || $pembayaran->status !== 'valid') {
+            return redirect()->route('pembayaran.awal');
+        }
+
+        return redirect()->intended('/dashboard');
     }
 
     public function logout(Request $request)
